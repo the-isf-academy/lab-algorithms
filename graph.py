@@ -24,17 +24,11 @@ class Vertex(object):
         self.neighbors.remove(neighbor)
 
     def __str__(self):
-        res = "{{ vertex: {}, neighbors: ".format(self.label)
-        for i, neighbor in enumerate(self.neighbors):
-            if i == len(self.neighbors)-1:
-                res += "{} ".format(neighbor.label)
-            else:
-                res += "{}, ".format(neighbor.label)
-        res += "}"
+        res = "{{vertex: {}}}".format(self.label)
         return res
 
     def __repr__(self):
-        return str(self)
+        return ("{{vertex: {}}}".format(self.label))
 
 class Graph(object):
 
@@ -63,15 +57,6 @@ class Graph(object):
                     if connected:
                         neighbor = self[letter]
                         vertex.add_neighbor(neighbor)
-
-    def __getitem__(self, label):
-        """ returns the Vertex with the given label or 
-        None if no such Vertex exists
-        """
-        try:
-            return self.__graph_dict[label]
-        except:
-            raise KeyError("Vertex {} does not exist in graph".format(label))
 
     def vertices(self):
         """ returns the labels for the vertices of a graph """
@@ -102,6 +87,12 @@ class Graph(object):
             vertex1.add_edge(vertex2)
             vertex2.add_edge(vertex1) # assume undirected
 
+    def reset_graph(self):
+        """Resets the vertices visited properties in the graph to prepare for a new search.
+        """
+        for vertex in self.__graph_dict.values():
+            vertex.visited = False
+
     def __generate_edges(self):
         """ A static method generating the edges of the
             graph "graph". Edges are represented as sets
@@ -114,6 +105,15 @@ class Graph(object):
                 if {neighbor.label, vertex.label} not in edges:
                     edges.append({vertex.label, neighbor.label})
         return edges
+
+    def __getitem__(self, label):
+        """ returns the Vertex with the given label or 
+        None if no such Vertex exists
+        """
+        try:
+            return self.__graph_dict[label]
+        except:
+            raise KeyError("Vertex {} does not exist in graph".format(label))
 
     def __iter__(self):
         return iter(self.__graph_dict.values())

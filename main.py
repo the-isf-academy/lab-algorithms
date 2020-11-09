@@ -15,7 +15,8 @@ mtr = {
 simple_graph = {
         "a": ["a", "b"],
         "b": ["b", "a", "c"],
-        "c": ["c", "b"]
+        "c": ["c", "b"],
+        "d": ["d"]
         }
 
 loop_matrix = [
@@ -39,3 +40,8 @@ print(' -> '.join(map(str, dfs("syp", "jordan", graph))))
 
 graph = Graph(graph_matrix=loop_matrix)
 print(' -> '.join(map(str, dfs("a", "h", graph))))
+graph.reset_graph()
+print(' -> '.join(map(str, bfs("a", "h", graph))))
+
+graph = Graph(graph_dict=simple_graph)
+print(' -> '.join(map(str, bfs("a", "d", graph))))
