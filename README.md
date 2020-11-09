@@ -40,7 +40,7 @@ vertex.visited = True
 Graph is a wrapper for a graph dictionary that allows the user to build graphs
 by adding Vertex objects:
 ```python
-from grpah import Graph, Vertex
+from graph import Graph, Vertex
 
 vertexA = Vertex("A")
 graph = Graph()
