@@ -3,6 +3,8 @@
 # Author: Narayana Chikkam
 # Adapted for cs10 by Jacob Wolf
 
+import string
+
 class Vertex(object):
     def __init__(self, label, neighbors=None):
         """ initializes a vertex object with a label. Initially,
@@ -31,9 +33,12 @@ class Vertex(object):
         res += "}"
         return res
 
+    def __repr__(self):
+        return str(self)
+
 class Graph(object):
 
-    def __init__(self, graph_dict=None):
+    def __init__(self, graph_dict=None, graph_matrix=None):
         """ initializes a graph object
             If no dictionary or None is given,
             an empty dictionary will be used
@@ -48,6 +53,16 @@ class Graph(object):
                 for neighbor in neighbors:
                     neighbor = self[neighbor]
                     vertex.add_neighbor(neighbor)
+        elif graph_matrix:
+            for i, letter in zip(range(len(graph_matrix)), string.ascii_lowercase):
+                vertex_obj = Vertex(letter)
+                self.__graph_dict[letter] = vertex_obj
+            for neighbors, letter in zip(graph_matrix, string.ascii_lowercase):
+                vertex = self[letter]
+                for connected, letter in zip(neighbors, string.ascii_lowercase):
+                    if connected:
+                        neighbor = self[letter]
+                        vertex.add_neighbor(neighbor)
 
     def __getitem__(self, label):
         """ returns the Vertex with the given label or 
