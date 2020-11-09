@@ -87,7 +87,7 @@ class Graph(object):
             vertex1.add_edge(vertex2)
             vertex2.add_edge(vertex1) # assume undirected
 
-    def reset_graph(self):
+    def reset(self):
         """Resets the vertices visited properties in the graph to prepare for a new search.
         """
         for vertex in self.__graph_dict.values():
@@ -121,8 +121,8 @@ class Graph(object):
     def __str__(self):
         res = "vertices: "
         for k in self.vertices():
-            res += str(k) + " "
+            res += str(k) + ", "
         res += "\nedges: "
         for edge in self.__generate_edges():
-            res += str(edge) + " "
+            res += str(edge) + ", "
         return res
