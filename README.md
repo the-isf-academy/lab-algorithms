@@ -31,7 +31,7 @@ Set the visited status of a Vertex:
 ```python
 vertexA = Vertex("A")
 
-vertex.visited = True
+vertexA.visited = True
 ```
 
 **NOTE: By default, vertices are unvisited.**
