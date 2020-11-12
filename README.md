@@ -26,8 +26,17 @@ vertexB.add_neighbor(vertexA)  #edge is now bi-directional
 
 vertexB.remove_neighbor(vertexA)  #edge is now only from A -> B
 ```
+You can get the label of the vertex by accessing the `label` property:
+```python
+vertexA.label
+```
 
-Set the visited status of a Vertex:
+and get a list of the vertex's neighbors using the `neighbors` property:
+```python
+vertexA.neighbors
+```
+
+Finally, you can get or set the visited status of a Vertex using the `visited` property:
 ```python
 vertexA = Vertex("A")
 
